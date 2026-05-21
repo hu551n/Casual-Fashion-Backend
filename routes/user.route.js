@@ -17,5 +17,6 @@ router.delete("/address/:addressId", userController.deleteAddress);
 router.use(authMiddleware.restrictTo("admin"));
 router.get("/all", userController.getAllUsers);
 router.patch("/:id/status", userController.toggleUserStatus);
+router.patch("/:id", userController.updateUser);
 
 module.exports = router;

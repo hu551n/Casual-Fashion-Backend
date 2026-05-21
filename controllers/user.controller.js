@@ -119,3 +119,23 @@ exports.toggleWishlist = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.updateUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("المستخدم غير موجود", 404));
+
+  if (user.role === "admin" && req.user.id !== user.id) {
+    return next(new AppError("لا يمكنك تعديل بيانات مسؤول آخر", 403));
+  }
+
+  const { name, email, mobile, gender, role } = req.body;
+  if (name) user.name = name;
+  if (email) user.email = email;
+  if (mobile) user.mobile = mobile;
+  if (gender) user.gender = gender;
+  if (role && req.user.role === "admin") user.role = role;
+
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({ status: "success", data: { user } });
+});
