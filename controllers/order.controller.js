@@ -147,7 +147,7 @@ exports.updateOrderStatus = catchAsync(async (req, res, next) => {
       }
     }
 
-    const canceledStatuses = ["canceledByUser", "canceledByAdmin", "rejected"];
+    const canceledStatuses = ["canceledByUser", "canceledByAdmin"];
     const isCurrentlyCanceled = canceledStatuses.includes(order.status);
     const isChangingToCanceled = canceledStatuses.includes(status);
 
