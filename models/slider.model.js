@@ -20,8 +20,9 @@ const sliderSchema = new mongoose.Schema(
 );
 
 sliderSchema.virtual("imageUrl").get(function () {
+  const baseUrl = process.env.BASE_URL || "http://localhost:5000";
   if (this.image && !this.image.startsWith("http")) {
-    return `http://localhost:5000/uploads/${this.image}`;
+    return `${baseUrl}/uploads/${this.image}`;
   }
   return this.image;
 });

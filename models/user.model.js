@@ -34,8 +34,17 @@ const userSchema = new mongoose.Schema(
 
     addresses: [
       {
-        title: String,
-        addressString: String,
+        title: {
+          type: String,
+          required: [true, "عنوان المكان مطلوب (مثال: البيت، العمل)"],
+          trim: true,
+        },
+        addressString: {
+          type: String,
+          required: [true, "تفاصيل العنوان مطلوبة"],
+          minlength: [10, "يجب أن يكون العنوان 10 أحرف على الأقل"],
+          trim: true,
+        },
         isDefault: {
           type: Boolean,
           default: false,
