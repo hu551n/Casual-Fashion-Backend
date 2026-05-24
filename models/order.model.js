@@ -31,7 +31,7 @@ const orderSchema = new mongoose.Schema(
         "shipped",
         "canceledByUser",
         "canceledByAdmin",
-        "rejected",
+        "refused",
         "received",
       ],
       default: "pending",

@@ -36,7 +36,7 @@ exports.getSalesReport = catchAsync(async (req, res, next) => {
     {
       $match: {
         ...dateFilter,
-        status: { $nin: ["canceledByUser", "canceledByAdmin", "rejected"] },
+        status: { $nin: ["canceledByUser", "canceledByAdmin", "refused"] },
       },
     },
     {
@@ -57,7 +57,7 @@ exports.getSalesReport = catchAsync(async (req, res, next) => {
     {
       $match: {
         ...dateFilter,
-        status: { $nin: ["canceledByUser", "canceledByAdmin", "rejected"] },
+        status: { $nin: ["canceledByUser", "canceledByAdmin", "refused"] },
       },
     },
     { $unwind: "$products" },
